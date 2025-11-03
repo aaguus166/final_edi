@@ -1,5 +1,6 @@
 import { Injectable, Body } from '@nestjs/common';
 import { mascotas_dueños } from './coso_de_id';
+import { modeloHistorial } from './modeloHistorial';
 
 @Injectable()
 export class VeterinariaService {
@@ -7,6 +8,10 @@ export class VeterinariaService {
     responsable: Array<any> = [];
     mascotas: Array<any> = [];
     turnos: Array<any> = [];
+    newPets: Array<any> = [];
+    newResponsables: Array<any> = [];
+    cambiarTurnos: Array<any> = [];
+    historyPets: Array<any> = [];
 
     constructor(){
         let dueños = {
@@ -94,29 +99,89 @@ export class VeterinariaService {
         };
         this.mascotas.push(animales);
 
+        let historial = {
+            "mascotaID": 101,
+            "historia_clinica": [
+                {   "detalle": "vacunacion antirrabica",
+                    "fecha": "2023-01-15"
+                }
+            ]
+            
+        };
+        this.historyPets.push(historial);
 
-    }
+    };
+
     getResponsables() {
         return this.responsable;
     };
 
     
     getPetsByOwnerId(id: number) {
+        console.log(`id ${id}:`);
+        let resultado;
         this.mascotas.forEach(mascota => {
-            if(mascota.ownerId === id){
+            if(mascota.ownerId == id){
                 console.log(`Mascota: ${mascota.nombre}, Tipo: ${mascota.tipo}, Edad: ${mascota.edad}`);
+                resultado = mascota;
             }
         });
-        return `la mascota del dueño con ID ${id}`;
+
+        return resultado;
        
 };
   
 crearTurno(body: mascotas_dueños){
     this.turnos.push(body);
-    return Body;
+    return body;
+};
+    nuevosDueños(@Body() body: mascotas_dueños){
+        this.newResponsables.push(body);
+        return body;
+    };
+
+    nuevasMascotas(@Body() body: mascotas_dueños){
+        this.newPets.push(body);
+        return body;
+    };
+
+getnewPets() {
+    return this.newPets;
+
+};
+
+getnewResponsables() {
+    return this.newResponsables;
+};
+
+cambiarTurno(@Body() body: mascotas_dueños){
+    this.cambiarTurnos.push(body);
+    return body;
+};
+
+Historypets(@Body() body: modeloHistorial){
+    // te llega el id de la mascota, y la sig info
+// {   "detalle": "vacunacion antirrabica",
+//                    "fecha": "2023-01-15"
+//                }
+
+// lo tenes que agregar al historial de la mascota correspondiente
+
+return body;
 }
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }
-
-

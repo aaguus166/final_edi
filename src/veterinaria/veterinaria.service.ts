@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Body } from '@nestjs/common';
 import { mascotas_dueños } from './coso_de_id';
 
 @Injectable()
@@ -6,6 +6,7 @@ export class VeterinariaService {
 
     responsable: Array<any> = [];
     mascotas: Array<any> = [];
+    turnos: Array<any> = [];
 
     constructor(){
         let dueños = {
@@ -95,15 +96,27 @@ export class VeterinariaService {
 
 
     }
-    getOwnerById(id: number) {
-        return this.responsable.find(owner => owner.id === id);
-    }
+    getResponsables() {
+        return this.responsable;
+    };
 
-    getPetsByOwnerId(ownerId: number) {
-        return this.mascotas.filter(pet => pet.ownerId === ownerId);
-    }
+    
+    getPetsByOwnerId(id: number) {
+        this.mascotas.forEach(mascota => {
+            if(mascota.ownerId === id){
+                console.log(`Mascota: ${mascota.nombre}, Tipo: ${mascota.tipo}, Edad: ${mascota.edad}`);
+            }
+        });
+        return `la mascota del dueño con ID ${id}`;
+       
+};
+  
+crearTurno(body: mascotas_dueños){
+    this.turnos.push(body);
+    return Body;
 }
+    
 
-
+}
 
 

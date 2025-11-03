@@ -1,12 +1,28 @@
-import { Controller, Get, Put, Post, Param } from '@nestjs/common';
+import { Controller, Get,Post, Param, Body } from '@nestjs/common';
+import { VeterinariaService } from './veterinaria.service';
+import { mascotas_dueños } from './coso_de_id';
 
 @Controller('veterinaria')
 export class VeterinariaController {
+constructor(private readonly VeterinariaService: VeterinariaService){}
 
-    @Get(":id")
-    buscarMascotas(@Param('id') id: number): string {
-        return `Se buscan las mascotas del dueño con id ${id}`;
-    }
+@Get()
+getResponsables(){
+    return this.VeterinariaService.getResponsables();
+}
+
+        @Get(":id")
+        getPetsByOwnerId(@Param('id') id: number): string {
+            return this.VeterinariaService.getPetsByOwnerId(id);
+        };
+
+        @Post()
+       crearTurno(@Body() body: mascotas_dueños){
+    return this.VeterinariaService.crearTurno(body);
+};
+
+    
+
 
 
 

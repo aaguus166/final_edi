@@ -1,4 +1,4 @@
-export class modeloHistorial {
+ export class modeloHistorial {
     detalle: string;
     fecha: string;
 }

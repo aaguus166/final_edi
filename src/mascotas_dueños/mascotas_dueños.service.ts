@@ -2,7 +2,7 @@
 
 import { Injectable, Body } from '@nestjs/common';
 import { mascotas_dueños } from './modelo_de_id';
-import { modeloHistorial } from './modeloHistorial';
+import { modeloHistorial } from '../historial_medico/modeloHistorial';
 
 @Injectable()
 export class MascotasDueñosService {

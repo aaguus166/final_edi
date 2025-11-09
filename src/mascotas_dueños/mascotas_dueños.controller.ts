@@ -1,7 +1,7 @@
 import { Controller, Get,Post, Param, Put, Body } from '@nestjs/common';
 import { MascotasDueñosService } from './mascotas_dueños.service';
 import { mascotas_dueños } from './modelo_de_id';
-import { modeloHistorial } from '../mascotas_dueños/modeloHistorial';
+import { modeloHistorial } from '../historial_medico/modeloHistorial';
 
 
 @Controller('mascotas-dueños')

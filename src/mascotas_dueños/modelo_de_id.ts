@@ -1,4 +1,4 @@
-export class mascotas_dueños {
+export class mascotas_duenos {
   id?: number;
   nombre: string;
   tipo: string;

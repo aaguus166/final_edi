@@ -1,28 +1,24 @@
 /*en este arhivo hice Rregistrar y consultar mascotas y sus dueños. A la vez nuevos clientes que ingresan con sus mascotas*/ 
 
 import { Injectable, Body } from '@nestjs/common';
-import { mascotas_dueños } from './modelo_de_id';
+import { mascotas_duenos } from './modelo_de_id';
 import { modeloHistorial } from '../historial_medico/modeloHistorial';
 
 @Injectable()
-export class MascotasDueñosService {
+export class MascotasDuenosService {
     responsable: Array<any> = [];
     mascotas: Array<any> = [];
-    newPets: Array<any> = [];
-    newResponsables: Array<any> = [];
-
-
-
+    
 constructor() {
     
-    const arrayDueños = [
+    const arrayDuenos = [
       { id: 1, nombre: 'lara', celular: '29983820' },
       { id: 2, nombre: 'agustina', celular: '8282878' },
       { id: 3, nombre: 'chayane', celular: '2020023' },
       { id: 4, nombre: 'ricardo fort', celular: '392933' },
       { id: 5, nombre: 'moria casan', celular: '8282878' },
     ];
-    this.responsable.push(arrayDueños);
+    this.responsable.push(arrayDuenos);
 
     
     const arrayAnimales = [
@@ -53,23 +49,23 @@ getResponsables() {
        
 };
 
-    nuevosDueños(@Body() body: mascotas_dueños){
-        this.newResponsables.push(body);
+    nuevosDuenos(@Body() body: mascotas_duenos){
+        this.responsable.push(body);
         return body;
     };
 
-    nuevasMascotas(@Body() body: mascotas_dueños){
-        this.newPets.push(body);
+    nuevasMascotas(@Body() body: mascotas_duenos){
+        this.mascotas.push(body);
         return body;
     };
 
 getnewPets() {
-    return this.newPets;
+    return this.mascotas;
 
 };
 
 getnewResponsables() {
-    return this.newResponsables;
+    return this.responsable;
 };
 
 
